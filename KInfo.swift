@@ -14,6 +14,8 @@ class KInfo {
     fileprivate var msgView:UIView!
     fileprivate var msgText:String!
     fileprivate var rootView:UIView!
+    var backgroundColor:UIColor?
+    var textColor:UIColor?
     
     
     init (text:String,to view:UIView) {
@@ -23,14 +25,14 @@ class KInfo {
         
     }
     
-    func setup(bgColor:UIColor = UIColor.darkGray, txtColor:UIColor = UIColor.white) {
+    func setup() {
     
         msgLabel = UILabel()
         msgLabel.text = msgText
         msgLabel.font = UIFont.systemFont(ofSize: 15)
         msgLabel.numberOfLines = 0
         msgLabel.lineBreakMode = .byWordWrapping
-        msgLabel.textColor = txtColor
+        msgLabel.textColor = self.textColor ?? UIColor.white
         msgLabel.textAlignment = .center
         msgLabel.frame = getTextSizes(str: msgText, fsize: 20)
         
@@ -38,7 +40,7 @@ class KInfo {
         msgView.frame = getTextSizes(str: msgText, fsize: 20)
         msgView.layer.cornerRadius = 5
         msgView.layer.masksToBounds = true
-        msgView.backgroundColor = bgColor.withAlphaComponent(0.8)
+        msgView.backgroundColor = self.backgroundColor?.withAlphaComponent(0.8) ?? UIColor.darkGray.withAlphaComponent(0.8)
         
         rootView.addSubview(msgView)
         
